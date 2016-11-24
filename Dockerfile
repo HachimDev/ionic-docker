@@ -67,6 +67,14 @@ COPY sh /opt/tools
 RUN ["/opt/tools/android-accept-licenses.sh", "android update sdk --all --no-ui --filter platform-tools,tools,build-tools-23.0.2,android-22,extra-android-support,extra-android-m2repository,extra-google-m2repository"]
 RUN unzip ${ANDROID_HOME}/temp/*.zip -d ${ANDROID_HOME}
 
+#project setup
 WORKDIR Sources
+RUN git clone https://slytherin9090:jasper90@gitlab.com/semi-colon/ipaymy.git \
+    && cd ipaymy \
+    && git checkout ui \
+    && yarn \
+    && ionic build android \
+    && cordova compile android
+
 EXPOSE 8100 35729
 CMD ["ionic", "serve"]

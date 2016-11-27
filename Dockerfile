@@ -71,7 +71,6 @@ RUN unzip ${ANDROID_HOME}/temp/*.zip -d ${ANDROID_HOME}
 WORKDIR Sources
 RUN git clone https://gitlab.com/slytherin9090/ionic2-boilerplate.git \
     && cd ionic2-boilerplate \
-    && git checkout ui \
     && yarn \
     && ionic state restore \
     && ionic platform add android \

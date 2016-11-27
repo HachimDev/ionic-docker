@@ -3,7 +3,7 @@ MAINTAINER "fallen <fallen90@darknorth.cf>"
 
 ENV DEBIAN_FRONTEND=noninteractive \
     ANDROID_HOME=/opt/android-sdk-linux \
-    NODE_VERSION=6.9.1 \
+    NODE_VERSION=4.6.2 \
     NPM_VERSION=3.10.8 \
     IONIC_VERSION=2.1.12 \
     CORDOVA_VERSION=5.3.1 \
@@ -64,15 +64,17 @@ ENV PATH ${PATH}:${ANDROID_HOME}/tools:${ANDROID_HOME}/platform-tools:/opt/tools
 # Install sdk elements
 COPY sh /opt/tools
 
-RUN ["/opt/tools/android-accept-licenses.sh", "android update sdk --all --no-ui --filter platform-tools,tools,build-tools-23.0.2,android-22,extra-android-support,extra-android-m2repository,extra-google-m2repository"]
+RUN ["/opt/tools/android-accept-licenses.sh", "android update sdk --all --no-ui --filter platform-tools,tools,build-tools-23.0.2,android-22,android-19,android-21,extra-android-support,extra-android-m2repository,extra-google-m2repository"]
 RUN unzip ${ANDROID_HOME}/temp/*.zip -d ${ANDROID_HOME}
 
 #project setup
 WORKDIR Sources
-RUN git clone https://slytherin9090:jasper90@gitlab.com/semi-colon/ipaymy.git \
+RUN git clone https://gitlab.com/slytherin9090/ionic2-boilerplate.git \
     && cd ipaymy \
     && git checkout ui \
     && yarn \
+    && ionic state restore \
+    && ionic platform add android \
     && ionic build android \
     && cordova compile android
 

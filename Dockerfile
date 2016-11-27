@@ -3,7 +3,7 @@ MAINTAINER "fallen <fallen90@darknorth.cf>"
 
 ENV DEBIAN_FRONTEND=noninteractive \
     ANDROID_HOME=/opt/android-sdk-linux \
-    NODE_VERSION=4.6.2 \
+    NODE_VERSION=5.0.0 \
     NPM_VERSION=3.10.8 \
     IONIC_VERSION=2.1.12 \
     CORDOVA_VERSION=5.3.1 \

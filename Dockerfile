@@ -1,13 +1,14 @@
 FROM     ubuntu:14.04.4
+LABEL   "ionic-docker"
 MAINTAINER "fallen <fallen90@darknorth.cf>"
 
 ENV DEBIAN_FRONTEND=noninteractive \
     ANDROID_HOME=/opt/android-sdk-linux \
-    NODE_VERSION=5.0.0 \
+    NODE_VERSION=6.4.0 \
     NPM_VERSION=3.10.8 \
-    IONIC_VERSION=2.1.12 \
-    CORDOVA_VERSION=5.3.1 \
-    YARN_VERSION=0.17.3 \
+    IONIC_VERSION=2.2.1 \
+    CORDOVA_VERSION=6.4.0 \
+    YARN_VERSION=0.19.7 \
     # Fix for the issue with Selenium, as described here:
     # https://github.com/SeleniumHQ/docker-selenium/issues/87
     DBUS_SESSION_BUS_ADDRESS=/dev/null
@@ -68,5 +69,3 @@ RUN ["/opt/tools/android-accept-licenses.sh", "android update sdk --all --no-ui 
 RUN unzip ${ANDROID_HOME}/temp/*.zip -d ${ANDROID_HOME}
 
 WORKDIR Sources
-EXPOSE 8100 35729
-CMD ["ionic", "serve"]
